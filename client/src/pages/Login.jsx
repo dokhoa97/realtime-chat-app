@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Alert, Button, Form, Row, Col, Stack } from 'react-bootstrap';
+import { AuthContext } from '../context/AuthContext';
 const Login = () => {
+    const { logOutUser,
+        loginUser,
+        loginError,
+        loginInfo,
+        updateLoginInfo,
+        isLoginLoading } = useContext(AuthContext)
     return (
         <>
-            <Form>
+            <Form onSubmit={loginUser}>
                 <Row style={{
                     heigh: '100vh',
                     justifyContent: 'center',
@@ -12,15 +19,35 @@ const Login = () => {
                     <Col xs={6}>
                         <Stack gap={3}>
                             <h2>Login</h2>
-                            <Form.Control type='text' placeholder='fullname...' />
-                            <Form.Control type='email' placeholder='...@gmail.com' />
-                            <Form.Control type='password' placeholder='password....' />
-                            <Button variant='primary' type='submit'>
-                                Login
-                            </Button>
-                            <Alert variant='danger'>
-                                <p>An error occured</p>
-                            </Alert>
+                            <Form.Control
+                                type='email'
+                                placeholder='Email...'
+                                onChange={e => updateLoginInfo({ ...loginInfo, email: e.target.value })}
+                            />
+                            <Form.Control
+                                type='password'
+                                placeholder='password....'
+                                onChange={e => updateLoginInfo({ ...loginInfo, password: e.target.value })}
+                            />
+                            {
+                                isLoginLoading ? (<>
+                                    <Button variant='primary' type='submit' disabled>
+                                        Loading
+                                    </Button>
+                                </>) : (<>
+                                    <Button variant='primary' type='submit' >
+                                        Login
+                                    </Button>
+                                </>)
+                            }
+                            {
+                                loginError?.error && (
+                                    <Alert variant='danger'>
+                                        <p>{loginError?.message}</p>
+                                    </Alert>
+                                )
+                            }
+
                         </Stack>
                     </Col>
                 </Row>
