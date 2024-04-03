@@ -1,8 +1,9 @@
 const chatModel = require('../Models/chatModel')
 
 // creatChat
-const creatChat = async (req, res) => {
-    const [firstId, secondId] = req.body
+const createChat = async (req, res) => {
+
+    const { firstId, secondId } = req.body;
 
     try {
         const chat = await chatModel.findOne({
@@ -43,10 +44,10 @@ const findUserChats = async (req, res) => {
 //findChat
 
 const findChat = async (req, res) => {
-    const [firstId, secondId] = req.params;
+    const { firstId, secondId } = req.params;
 
     try {
-        const chat = await chatModel.find({
+        const chat = await chatModel.findOne({
             members: { $all: [firstId, secondId] }
         });
 
@@ -57,4 +58,4 @@ const findChat = async (req, res) => {
     }
 };
 
-module.exports = { creatChat, findUserChats, findChat }
+module.exports = { createChat, findUserChats, findChat }

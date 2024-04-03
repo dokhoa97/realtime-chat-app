@@ -10,9 +10,9 @@ require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
-app.use('/api/messages', messageRouter);
 app.use('/api/users', userRouter);
 app.use('/api/chats', chatRouter);
+app.use('/api/messages', messageRouter);
 
 
 app.get('/', (req, res) => {
