@@ -6,8 +6,8 @@ export const AuthContextProvider = ({ children }) => {
     const [loginError, setLoginError] = useState(null);
     const [isLoginLoading, setIsLoginLoading] = useState(false);
     const [loginInfo, setLoginInfo] = useState({
-        email: 'khoadeptrai97@gmail.com',
-        password: 'Trungveso2ty@'
+        email: '',
+        password: ''
     })
 
     const [registerError, setRegisterError] = useState(null);
