@@ -7,19 +7,19 @@ const PotentialChats = () => {
     const { potentialChats, createChat } = useContext(ChatContext);
 
     return (
-        <>
-            <div className="all-users">
-                {potentialChats &&
-                    potentialChats.map((u, index) => (
-                        <div className="single-user" key={index}
-                            onClick={() => createChat(user._id, u._id)}
-                        >
-                            {u.name}
-                            <span className="user-online"></span>
-                        </div>
-                    ))}
-            </div>
-        </>
+
+        <div className="all-users">
+            {potentialChats &&
+                potentialChats?.map((u, index) => (
+                    <div className="single-user" key={index}
+                        onClick={() => createChat(u._id, user._id)}
+                    >
+                        {u.name}
+                        <span className="user-online"></span>
+                    </div>
+                ))}
+        </div>
+
     )
 }
 
