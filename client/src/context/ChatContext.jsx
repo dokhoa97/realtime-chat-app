@@ -21,7 +21,6 @@ export const ChatContextProvider = ({ children, user }) => {
 
     useEffect(() => {
         const newSocket = io("http://localhost:3003");
-        console.log(newSocket);
         setSocket(newSocket);
 
         return () => {
@@ -83,9 +82,6 @@ export const ChatContextProvider = ({ children, user }) => {
 
                         return chat.members[0] === u._id || chat.members[1] === u._id;
                     });
-
-                    return isChatCreated
-
                 }
                 return !isChatCreated;
             });
@@ -153,12 +149,12 @@ export const ChatContextProvider = ({ children, user }) => {
             setTextMessage("");
 
         }, [])
-    const createChat = useCallback(async (firstId, sencondId) => {
+    const createChat = useCallback(async (firstId, secondId) => {
         const response = await postRequest(`
         ${baseUrl}/chats`,
             JSON.stringify({
                 firstId,
-                sencondId,
+                secondId,
             })
         );
         if (response.error) {

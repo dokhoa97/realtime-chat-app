@@ -9,20 +9,22 @@ const PotentialChats = () => {
 
         <div className="all-users">
             {potentialChats &&
-                potentialChats?.map((u, index) => (
-                    <div className="single-user" key={index}
-                        onClick={() => createChat(u._id, user._id)}
-                    >
-                        {u.name}
-                        <span className={
-                            onlineUsers?.some((user) => user?.userId === u?._id)
-                                ? "user-online"
-                                : ""
-                        }
+                potentialChats?.map((u, index) => {
+                    return (
+                        <div className="single-user" key={index}
+                            onClick={() => createChat(u._id, user._id)}
                         >
-                        </span>
-                    </div>
-                ))
+                            {u.name}
+                            <span className={
+                                onlineUsers?.some((user) => user?.userId === u?._id)
+                                    ? "user-online"
+                                    : ""
+                            }
+                            >
+                            </span>
+                        </div>
+                    )
+                })
             }
         </div >
 

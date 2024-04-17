@@ -10,7 +10,10 @@ const NavBar = () => {
                 <h2>
                     <Link to={'/'} className='link-light text-decoration-none'>Chat App</Link>
                 </h2>
-                <span className='text-warning'>Logged in as {user?.name}</span>
+                {
+                    user?.name ? <span className='text-warning'>Logged in as {user?.name}</span> : <span></span>
+                }
+
                 <Nav>
                     <Stack direction="horizontal" gap={3}>
                         {

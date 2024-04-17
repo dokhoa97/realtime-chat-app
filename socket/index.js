@@ -14,12 +14,13 @@ io.on("connection", (socket) => {
             onlineUsers.push({
                 userId,
                 socketId: socket.id,
-            })
+            });
 
         io.emit("getOnlineUsers", onlineUsers);
     });
+
     // add message
-    socket.compress("sendMessage", (message) => {
+    socket.on("sendMessage", (message) => {
         const user = onlineUsers.find(user => user.userId === message.recipientId)
 
         if (user) {
